@@ -1,0 +1,25 @@
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    margin: 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 15px 15px;
+}
+
+.brand-image {
+    width: 40px;
+    height: 100%;
+}
+
+.header-content h1 {
+    
+}

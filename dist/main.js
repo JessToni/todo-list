@@ -1,1 +1,1 @@
-alert("Hello");
+(()=>{"use strict";(()=>{const e=document.querySelector("#header"),t=document.createElement("div");t.classList.add("header-content");const d=document.createElement("img");d.classList.add("brand-image"),d.src="/src/images/dodo-logo.png",d.alt="dodo",t.appendChild(d);const n=document.createElement("h1");n.textContent="To-dodo",t.appendChild(n),e.appendChild(t)})()})();
