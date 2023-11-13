@@ -1,6 +1,3 @@
-/*<img src=>
-<h1>To-dodo</h1>*/
-
 const createTodoHeader = () => {
     const header = document.querySelector('#header')
     const headerContent = document.createElement('div');

@@ -1,4 +1,6 @@
 body {
+    display: grid;
+    grid-template-rows: 1fr 8fr;
     margin: 0px;
     width: 100vw;
     height: 100vh;
@@ -8,11 +10,14 @@ h1 {
     margin: 0;
 }
 
+#header {
+    padding: 15px;
+}
+
 .header-content {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin: 15px 15px;
 }
 
 .brand-image {
@@ -20,6 +25,16 @@ h1 {
     height: 100%;
 }
 
-.header-content h1 {
-    
+#content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    background-color: grey;
+}
+
+.left-container {
+    background-color: darkgrey;
+}
+
+.right-container {
+    background-color: blanchedalmond;
 }
