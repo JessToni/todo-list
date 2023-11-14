@@ -28,6 +28,7 @@ const createTodoContentContainer = () => {
 
     //Add '+' button to header section
     const addProject = document.createElement('button');
+    addProject.setAttribute('id','add-button')
     addProject.textContent = "+";
     projectHeader.appendChild(addProject);
 
