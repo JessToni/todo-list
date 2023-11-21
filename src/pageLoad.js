@@ -1,6 +1,6 @@
 import createTodoHeader from './todo-header';
 import createTodoContentContainer from './todo-content';
-import createMyProjects from './my-projects';
+import createMyProjects from './project-modal';
 
 function initialLoad() {
     createTodoHeader();
