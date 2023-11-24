@@ -1,6 +1,6 @@
 import { Project } from "./project";
 import { projects } from "./globalState";
-import { displayProjects } from "./displayProjects";
+import { displayProjects } from "./projectDisplay";
 
 const createMyProjects = () => {
     const addProject = document.querySelector('#add-button');
