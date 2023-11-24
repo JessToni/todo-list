@@ -1,3 +1,6 @@
+import { Project } from "./project";
+import { projects } from "./globalState";
+
 const createMyProjects = () => {
     const addProject = document.querySelector('#add-button');
     addProject.addEventListener('click', () => {
@@ -52,6 +55,23 @@ function openModal() {
 
     //Display modal overlay
     modal.style.display = 'flex';
+
+    //Form event listener
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const projectName = titleInput.value.trim();
+        if (projectName) {
+            //Add new project instance
+            //This assumes you have imported the Project class and have an instance
+            const newProject = new Project(projectName);
+            console.log(newProject);
+            projects.push(newProject);
+            console.log(projects);
+            titleInput.value = '';
+            modal.style.display = 'none';
+        }
+    });
 
     //Close modal on click
     modal.addEventListener('click', (e) => {
