@@ -14,12 +14,10 @@ const createTodoContentContainer = () => {
     //Add a container for projects, a header section and an "add" button
     const projectContainer = document.createElement('div');
     projectContainer.classList.add('project-container');
-    leftContainer.appendChild(projectContainer);
 
     //Add header section for projects
     const projectHeader = document.createElement('div');
     projectHeader.classList.add('project-header');
-    projectContainer.appendChild(projectHeader);
 
     //Add heading for header section
     const projectTitle = document.createElement('h4');
@@ -32,7 +30,7 @@ const createTodoContentContainer = () => {
     addProject.textContent = "+";
     projectHeader.appendChild(addProject);
 
-    projectContainer.appendChild(projectHeader);
+    leftContainer.appendChild(projectHeader);
     leftContainer.appendChild(projectContainer);
 }
 

@@ -1,5 +1,6 @@
 import { Project } from "./project";
 import { projects } from "./globalState";
+import { displayProjects } from "./displayProjects";
 
 const createMyProjects = () => {
     const addProject = document.querySelector('#add-button');
@@ -70,6 +71,7 @@ function openModal() {
             console.log(projects);
             titleInput.value = '';
             modal.style.display = 'none';
+            displayProjects();
         }
     });
 
