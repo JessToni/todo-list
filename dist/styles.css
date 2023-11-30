@@ -86,3 +86,15 @@ h1,h2,h3,h4 {
 .right-container {
     background-color: blanchedalmond;
 }
+
+.add-task {
+    margin: 15px;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin: 15px;
+}
