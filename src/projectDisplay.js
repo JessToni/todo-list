@@ -69,74 +69,86 @@ function displayTasks(project) {
         //Append all taskElement to rightContainer
         rightContainer.appendChild(taskElement);
     });
+}
 
-    function showTaskForm(project, addTaskDiv) {
-        const rightContainer = document.querySelector('.right-container')
-        
-        //Create form
-        const form = document.createElement('form');
-        form.id = 'task-form';
-        
-        //Task name input
-        const nameInput = document.createElement('input');
-        nameInput.type = 'text';
-        nameInput.placeholder = 'Task Name';
-        nameInput.required = true;
-        form.appendChild(nameInput);
+function showTaskForm(project, addTaskDiv) {
+    const rightContainer = document.querySelector('.right-container')
+    
+    addTaskDiv.style.display = 'none';
 
-        //Task description input
-        const descriptionInput = document.createElement('textarea');
-        descriptionInput.placeholder = 'Task Description';
-        descriptionInput.required = true; //required field
-        form.appendChild(descriptionInput);
+    //Create form
+    const form = document.createElement('form');
+    form.id = 'task-form';
+    
+    //Task name input
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Task Name';
+    nameInput.required = true;
+    form.appendChild(nameInput);
 
-        //Task due date input
-        const dueDateInput = document.createElement('input');
-        dueDateInput.type = 'date';
-        dueDateInput.required = true; //required field
-        form.appendChild(dueDateInput);
+    //Task description input
+    const descriptionInput = document.createElement('textarea');
+    descriptionInput.placeholder = 'Task Description';
+    descriptionInput.required = true; //required field
+    form.appendChild(descriptionInput);
 
-        //Priority Checkboxes
-        const priorities = ["High", "Medium", "Low"];
-        const priorityContainer = document.createElement('div');
+    //Task due date input
+    const dueDateInput = document.createElement('input');
+    dueDateInput.type = 'date';
+    dueDateInput.required = true; //required field
+    form.appendChild(dueDateInput);
 
-        priorities.forEach(priority => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'radio';
-            checkbox.name = 'priority';
-            checkbox.value = priority;
+    //Priority Checkboxes
+    const priorities = ["High", "Medium", "Low"];
+    const priorityContainer = document.createElement('div');
 
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(priority));
-            priorityContainer.appendChild(label);
-        });
+    priorities.forEach(priority => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'radio';
+        checkbox.name = 'priority';
+        checkbox.value = priority;
 
-        form.appendChild(priorityContainer)
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(priority));
+        priorityContainer.appendChild(label);
+    });
 
-        const submitButton = document.createElement('button');
-        submitButton.type = 'submit';
-        submitButton.textContent = 'Add Task';
-        form.appendChild(submitButton);
+    form.appendChild(priorityContainer)
 
-        //Add form just before the 'Add Task' div
-        rightContainer.insertBefore(form, addTaskDiv);
+    const cancelButton = document.createElement('button');
+    cancelButton.type = 'button';
+    cancelButton
+    cancelButton.textContent = 'Cancel';
+    cancelButton.onclick = () => {
+        form.remove();
+        addTaskDiv.style.display = 'block';
+    };
+    form.appendChild(cancelButton);
 
-        //Form submission event
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.textContent = 'Add Task';
+    form.appendChild(submitButton);
 
-            //Create a new task and add it to the project
-            const newTask = new Task(
-                nameInput.value,
-                descriptionInput.value,
-                dueDateInput.value,
-                form.priority.value //assuming priority is set via radio buttons
-            );
-            project.tasks.unshift(newTask); //adds the new task at the beginning
+    //Add form just before the 'Add Task' div
+    rightContainer.insertBefore(form, addTaskDiv);
 
-            //Redisplay tasks
-            displayTasks(project);
-        });
-    }
+    //Form submission event
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        //Create a new task and add it to the project
+        const newTask = new Task(
+            nameInput.value,
+            descriptionInput.value,
+            dueDateInput.value,
+            form.priority.value //assuming priority is set via radio buttons
+        );
+        project.tasks.unshift(newTask); //adds the new task at the beginning
+
+        //Redisplay tasks
+        displayTasks(project);
+    });
 }

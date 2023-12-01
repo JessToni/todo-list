@@ -91,10 +91,19 @@ h1,h2,h3,h4 {
     margin: 15px;
 }
 
+.add-task:hover {
+    cursor: pointer;
+    background-color: grey;
+}
+
 #task-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 50%;
+    margin: 15px;
+}
+
+.task {
     margin: 15px;
 }
