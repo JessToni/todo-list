@@ -7,4 +7,8 @@ export class Project {
     addTask(task) {
         this.tasks.push(task);
     }
+
+    deleteTask(taskIndex) {
+        this.tasks.splice(taskIndex, 1)
+    }
 }

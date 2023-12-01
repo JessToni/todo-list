@@ -35,10 +35,19 @@ function displayTasks(project) {
     rightContainer.appendChild(addTaskDiv);
 
     //Display existing tasks
-    project.tasks.forEach(task => {
+    project.tasks.forEach((task, index) => {
         //Task container
         const taskElement = document.createElement('div');
         taskElement.classList.add('task');
+
+        //Delete task
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "Delete";
+        deleteButton.classList.add('delete-button');
+        deleteButton.onclick = () => {
+            project.deleteTask(index);
+            displayTasks(project);
+        }
         
         //Task name
         const taskName = document.createElement('div');
@@ -66,6 +75,7 @@ function displayTasks(project) {
         statusButton.onclick = () => toggleTaskStatus(task, statusButton);
 
         //Append all properties to taskElement
+        taskElement.appendChild(deleteButton)
         taskElement.appendChild(taskName);
         taskElement.appendChild(taskDescription);
         taskElement.appendChild(taskDueDate);
