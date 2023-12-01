@@ -60,11 +60,17 @@ function displayTasks(project) {
         taskPriority.textContent = `Priority: ${task.priority}`;
         taskPriority.classList.add('task-priority');
 
+        const statusButton = document.createElement('button');
+        statusButton.textContent = 'In Progress';
+        statusButton.classList.add('status-in-progress');
+        statusButton.onclick = () => toggleTaskStatus(task, statusButton);
+
         //Append all properties to taskElement
         taskElement.appendChild(taskName);
         taskElement.appendChild(taskDescription);
         taskElement.appendChild(taskDueDate);
         taskElement.appendChild(taskPriority);
+        taskElement.appendChild(statusButton);
 
         //Append all taskElement to rightContainer
         rightContainer.appendChild(taskElement);
@@ -151,4 +157,16 @@ function showTaskForm(project, addTaskDiv) {
         //Redisplay tasks
         displayTasks(project);
     });
+}
+
+function toggleTaskStatus(task, button) {
+    if (task.isComplete) {
+        task.isComplete = false;
+        button.textContent = 'In Progress';
+        button.classList.replace('status-complete', 'status-in-progress');
+    } else {
+        task.isComplete = true;
+        button.textContent = "Complete";
+        button.classList.replace('status-in-progress', 'status-complete')
+    }
 }

@@ -107,3 +107,11 @@ h1,h2,h3,h4 {
 .task {
     margin: 15px;
 }
+
+.status-in-progress {
+    background-color: lightcoral;
+}
+
+.status-complete {
+    background-color: lightgreen;
+}
