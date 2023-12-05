@@ -1,3 +1,4 @@
+import { openTaskModal } from "./taskModal";
 import { projects } from "./globalState";
 import { Task } from "./task";
 
@@ -41,13 +42,7 @@ function displayTasks(project) {
         taskElement.classList.add('task');
 
         //Delete task
-        const deleteButton = document.createElement('div');
-        deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>`;
-        deleteButton.classList.add('delete-button');
-        deleteButton.onclick = () => {
-            project.deleteTask(index);
-            displayTasks(project);
-        }
+        const deleteButton = createDeleteButton(project, index);
         
         //Task name
         const taskName = document.createElement('div');
@@ -69,10 +64,8 @@ function displayTasks(project) {
         taskPriority.textContent = `Priority: ${task.priority}`;
         taskPriority.classList.add('task-priority');
 
-        const statusButton = document.createElement('button');
-        statusButton.textContent = 'In Progress';
-        statusButton.classList.add('status-in-progress');
-        statusButton.onclick = () => toggleTaskStatus(task, statusButton);
+        // Status button
+        const statusButton = createStatusButton(task);
 
         //Append all properties to taskElement
         taskElement.appendChild(deleteButton)
@@ -81,6 +74,9 @@ function displayTasks(project) {
         taskElement.appendChild(taskDueDate);
         taskElement.appendChild(taskPriority);
         taskElement.appendChild(statusButton);
+
+        //Make the whole task element clickable
+        taskElement.onclick = () => openTaskModal(task, project, index);
 
         //Append all taskElement to rightContainer
         rightContainer.appendChild(taskElement);
@@ -167,6 +163,31 @@ function showTaskForm(project, addTaskDiv) {
         //Redisplay tasks
         displayTasks(project);
     });
+}
+
+function createDeleteButton(project, taskIndex) {
+    const deleteButton = document.createElement('div');
+    deleteButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>`;
+    deleteButton.classList.add('delete-button');
+    deleteButton.onclick = (event) => {
+        event.stopPropagation();
+        project.deleteTask(taskIndex);
+        displayTasks(project);
+    };
+    return deleteButton;
+}
+
+function createStatusButton(task) {
+    const statusButton = document.createElement('button');
+    statusButton.textContent = task.isComplete ? 'Complete' : 'In Progress';
+    statusButton.classList.add(task.isComplete ? 'status-complete' : 'status-in-progress');
+
+    statusButton.onclick = (event) => {
+        event.stopPropagation();
+        toggleTaskStatus(task, statusButton);
+    }
+
+    return statusButton;
 }
 
 function toggleTaskStatus(task, button) {
