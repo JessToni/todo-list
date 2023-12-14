@@ -21,7 +21,7 @@ export const displayProjects = () => {
     });
 }
 
-function displayTasks(project) {
+export function displayTasks(project) {
     const rightContainer = document.querySelector('.right-container');
     rightContainer.innerHTML = ''; // Clear existing content
 

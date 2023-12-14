@@ -6,4 +6,20 @@ export class Task {
         this.priority = priority;
         this.isComplete = false;
     }
+
+    updateName(newName) {
+        this.name = newName;
+    }
+
+    updateDescription(newDescription) {
+        this.description = newDescription;
+    }
+
+    updateDueDate(newDueDate) {
+        this.dueDate = newDueDate;
+    }
+
+    updatePriority(newPriority) {
+        this.priority = newPriority;
+    }
 }
