@@ -17,7 +17,7 @@ export function openTaskModal(task, project, taskIndex) {
     const form = document.createElement('form');
     form.id = 'task-form';
 
-    // Form rows
+    // First row for task input
     const formRow1 = document.createElement('div');
     formRow1.id = 'form-row-1';
 
@@ -49,7 +49,7 @@ export function openTaskModal(task, project, taskIndex) {
     taskDescriptionInput.value = task.description;
     formRow2.appendChild(taskDescriptionInput);
 
-    // Third form row for task description
+    // Third form row for due date
     const formRow3 = document.createElement('div');
     formRow3.id = 'form-row-3';
 
@@ -64,6 +64,33 @@ export function openTaskModal(task, project, taskIndex) {
     dueDateInput.type = 'date';
     formRow3.appendChild(dueDateInput);
 
+    // Fourth row for priority
+    const formRow4 = document.createElement('div');
+    formRow4.id = 'form-row-4';
+
+    // Label for priority
+    const taskPriorityLabel = document.createElement('label');
+    taskPriorityLabel.for = 'taskPriority';
+    taskPriorityLabel.textContent = 'Priority';
+    formRow4.appendChild(taskPriorityLabel);
+
+    // Priority select input
+    const taskPriorityInput = document.createElement('select');
+    taskPriorityInput.name = 'taskPriority';
+
+    // Options for priority
+    const priorityOptions = ["High", "Medium", "Low"];
+
+    priorityOptions.forEach(priority => {
+        const option = document.createElement('option');
+        option.value = priority;
+        option.text = priority;
+        taskPriorityInput.appendChild(option);
+    });
+
+    taskPriorityInput.value = task.priority;
+
+    formRow4.appendChild(taskPriorityInput);
 
     // Modal submit button
     const submit = document.createElement('button');
@@ -74,6 +101,7 @@ export function openTaskModal(task, project, taskIndex) {
     form.appendChild(formRow1);
     form.appendChild(formRow2);
     form.appendChild(formRow3);
+    form.appendChild(formRow4);
     form.appendChild(submit);
 
     modalContent.appendChild(form);
@@ -92,6 +120,7 @@ export function openTaskModal(task, project, taskIndex) {
         task.updateName(taskNameInput.value.trim());
         task.updateDescription(taskDescriptionInput.value.trim());
         task.updateDueDate(dueDateInput.value.trim())
+        task.updatePriority(taskPriorityInput.value);
 
         // Close the modal
         modal.style.display = 'none';
